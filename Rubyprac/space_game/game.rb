@@ -1,7 +1,7 @@
 require 'hasu'
 
 
-class GameWindow < Hasu::Window
+class Game < Hasu::Window
   Hasu.load './Player.rb'
   Hasu.load './Star.rb'
   Hasu.load './MiniStar.rb'
@@ -110,4 +110,4 @@ class GameWindow < Hasu::Window
   end
 end
 
-GameWindow.run
+Game.run
