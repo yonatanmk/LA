@@ -92,7 +92,7 @@ class Game < Hasu::Window
 
   def collect_stars
     @star_list.each do |star|
-      if Gosu::distance(@player.x, @player.y, star.x, star.y) < 35 then
+      if Gosu::distance(@player.x, @player.y, star.x, star.y) < 35
         @score += 10
         @beep.play
         create_mini_stars(star.x, star.y)
@@ -102,7 +102,7 @@ class Game < Hasu::Window
   end
 
   def create_mini_stars(x, y)
-    mini_stars = []  ############
+    mini_stars = [] 
     8.times do
       mini_stars << MiniStar.new(x, y, mini_stars.length * 45, @timer)
     end
