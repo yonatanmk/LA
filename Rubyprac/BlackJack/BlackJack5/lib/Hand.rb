@@ -10,7 +10,7 @@ class Hand
       total = @card_list.inject(0){|sum, card| sum + card.value}
       if total > 21 && self.contains_a11
         @card_list.each do |card|
-          if card.face == 'A' && card.value == 11
+          if card.value == 11
             card.value_to_1
             break
           end
@@ -23,7 +23,7 @@ class Hand
 
   def contains_a11
     @card_list.each do |card|
-      return true if card.face == 'A' && card.value == 11
+      return true if card.value == 11
     end
     return false
   end

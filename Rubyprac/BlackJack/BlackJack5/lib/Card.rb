@@ -14,6 +14,6 @@ class Card
   end
 
   def value_to_1
-    @value = 1
+    @value = 1 if face == 'A'
   end
 end

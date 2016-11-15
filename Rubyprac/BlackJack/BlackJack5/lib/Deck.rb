@@ -1,12 +1,12 @@
 class Deck
-  require './Card.rb'
+  require_relative 'Card.rb'
   attr_reader :cards_remaining
 
   def initialize
     @cards_remaining = []
     ['♠', '♥', '♦', '♣'].each do |sym|
       (2..10).each do |num|
-        @cards_remaining << Card.new(num.to_i, sym)
+        @cards_remaining << Card.new(num.to_s, sym)
       end
       ['J', 'Q', 'K', 'A'].each do |face|
         @cards_remaining << Card.new(face, sym)

@@ -25,7 +25,7 @@ nav {
   background-size: 100% 100%;
 }
 
-.top-row, .bot-row {
+.top_row, .bot_row {
   color: white;
   text-shadow: 2px 2px 5px black;
   font-family: 'Impact';
@@ -38,11 +38,11 @@ nav {
   margin: 0px;
 }
 
-.top-row {
+.top_row {
   top: 8px;
 }
 
-.bot-row {
+.bot_row {
   bottom: 8px;
 }
 
