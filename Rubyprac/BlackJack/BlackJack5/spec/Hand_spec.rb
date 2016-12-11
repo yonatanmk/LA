@@ -7,6 +7,7 @@ describe 'Hand:' do
   let(:card2) {Card.new('A', '♣')}
   let(:card3) {Card.new('K', '♦')}
   let(:card4) {Card.new('7', '♠')}
+  let(:card5) {Card.new('J', '♠')}
   subject(:hand) {Hand.new card1, card2}
 
   describe '#initialize:' do
@@ -15,32 +16,34 @@ describe 'Hand:' do
     end
   end
 
-  describe '#hand_total:' do
-    ################################ DO THIS NEXT
-  end
-
-  describe '#contains_a11:' do
-    before(:each) do
-      @hand = hand
-      @hand_no_A = Hand.new card1, card3
-    end
-    it 'reports true when hand contains A' do
-      @hand.card_list.each {|card| puts "#{card.face}#{card.symbol}   #{card.value}"}
-      puts @hand.contains_a11
-      expect(@hand.contains_a11).to eq(true)
-    end
-    it 'reports false when hand doesnt contains A' do
-      expect(@hand_no_A.contains_a11).to eq(false)
-    end
-    it 'reports false when hand doesnt contains only low A (e.g. A with val = 1)' do
-      @hand.hit_me(card3)
-      @hand.hand_total
-      expect(@hand.contains_a11).to eq(false)
-    end
-  end
-
   describe '#hit_me:' do
+    it 'adds a card to the hand' do
+      hand.hit_me(card4)
+      expect(hand.card_list).to eq([card1, card2, card4])
+    end
+  end
 
+  describe '#hand_total:' do
+    it "calculates hand total with number cards" do
+      hand = Hand.new(card1, card4)
+      expect(hand.hand_total).to eq(9)
+    end
+
+    it "calculates hand total with face cards" do
+      hand = Hand.new(card3, card5)
+      expect(hand.hand_total).to eq(20)
+    end
+
+    it "calculates hand total with high ace cards" do
+      hand = Hand.new(card2, card4)
+      expect(hand.hand_total).to eq(18)
+    end
+
+    it "calculates hand total with low ace cards" do
+      hand = Hand.new(card2, card4)
+      hand.hit_me(card5)
+      expect(hand.hand_total).to eq(18)
+    end
   end
 
   describe '#show_hand:' do

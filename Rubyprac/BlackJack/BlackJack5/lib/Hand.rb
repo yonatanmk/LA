@@ -1,3 +1,6 @@
+# require_relative 'Card.rb'
+# require 'Pry'
+
 class Hand
   attr_reader :card_list
 
@@ -6,26 +9,16 @@ class Hand
   end
 
   def hand_total
-    loop do
-      total = @card_list.inject(0){|sum, card| sum + card.value}
-      if total > 21 && self.contains_a11
-        @card_list.each do |card|
-          if card.value == 11
-            card.value_to_1
-            break
-          end
-        end
+    cards = @card_list.sort {|card, _| card.value == 11 ? 1 : -1}
+    total = cards.reduce(0) do |sum, card|
+      if card.value == 11 && sum > 10
+        @card_list[cards.index(card)].value_to_1
+        sum + 1
       else
-        return total
+        sum + card.value
       end
     end
-  end
-
-  def contains_a11
-    @card_list.each do |card|
-      return true if card.value == 11
-    end
-    return false
+    return total
   end
 
   def hit_me card
@@ -70,3 +63,7 @@ class Hand
   end
 
 end
+
+# ['♠', '♥', '♦', '♣']
+# hand = Hand.new(Card.new('A', '♣'), Card.new('A', '♦'))
+# puts hand.hand_total

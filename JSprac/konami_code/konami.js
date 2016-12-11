@@ -106,8 +106,8 @@ $(document).ready(function() {
           $('body').append("<img src='http://i1061.photobucket.com/albums/t480/ericqweinstein/mario.jpg'/>");
           $('img').draggable();
           $('img').dblclick(function(){
-            $(this).effect('explode')
-          })
+            $(this).effect('explode');
+          });
         }
         break;
       default:

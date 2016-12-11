@@ -1,6 +1,5 @@
 require 'hasu'
 
-
 class Game < Hasu::Window
   Hasu.load './Player.rb'
   Hasu.load './Star.rb'
@@ -102,7 +101,7 @@ class Game < Hasu::Window
   end
 
   def create_mini_stars(x, y)
-    mini_stars = [] 
+    mini_stars = []
     8.times do
       mini_stars << MiniStar.new(x, y, mini_stars.length * 45, @timer)
     end
