@@ -1,0 +1,16 @@
+<h1>Hello this works</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>URL</th>
+    <th>Description</th>
+  </tr>
+  <%@articles.each do |article|%>
+    <tr>
+      <td><%= article[0]%></td>
+      <td><%= article[1]%></td>
+      <td><a target="_blank" href=<%= 'https://'+ article[2]%>> <%= article[2]%> </a></td>
+    </tr>
+  <% end %>
+</table>
