@@ -42,7 +42,8 @@ class Game
 
       if self.replay
         system "clear"
-        self.leaving_players
+        self.boot_players
+        self.leaving_players if @players.length > 0
         if @players.length < 4
           system "clear"
           self.new_players
@@ -54,7 +55,11 @@ class Game
         break
       end
 
-      break if @players.empty?
+      if @players.empty?
+        puts "Goodbye"
+        gets
+        exit
+      end
     end
   end
 
@@ -202,6 +207,16 @@ class Game
       puts "#{player.name} currently has $#{player.money}."
       puts
     end
+  end
+
+  def boot_players
+    @players.each do |player|
+      if player.money == 0
+        puts "#{player.name} has run out of money and has to leave the table."
+      end
+      @players = @players.select{|player| player.money != 0}
+    end
+    self.clear_screen
   end
 
   def leaving_players
